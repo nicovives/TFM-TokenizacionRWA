@@ -476,14 +476,54 @@ function App() {
         </header>
 
         {/* RENDERIZADO CONDICIONAL: Control de Flujo de Autenticación */}
-        {/* Si el estado 'cuenta' es nulo, se renderiza exclusivamente el prompt de conexión */}
         {!cuenta ? (
-          <div style={{ textAlign: 'center', marginTop: '5rem' }}>
-            <button onClick={conectarWallet} style={S.btnPrimary}>
-              Conectar MetaMask
-            </button>
-            {/* Feedback de error en caso de fallo de inyección del proveedor Web3 */}
-            {error && <p style={{ color: tema.primary, marginTop: '1rem' }}>{error}</p>}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '2rem', gap: '4rem' }}>
+            
+            {/*TARJETA DE CONEXIÓN */}
+            <div style={{ ...S.card, textAlign: 'center', maxWidth: '450px', width: '100%', padding: '3rem 2rem' }}>
+              <div style={{ fontSize: '48px', marginBottom: '1rem' }}>🏠</div>
+              <h2 style={{ marginTop: 0, color: '#1d1d1f', fontSize: '22px' }}>Bienvenido al Mercado</h2>
+              <p style={{ color: '#86868b', fontSize: '15px', marginBottom: '2.5rem', lineHeight: '1.5' }}>
+                Conecta Metamask para operar con inmuebles tokenizados.
+              </p>
+              
+              <button onClick={conectarWallet} style={{ ...S.btnPrimary, width: '100%', fontSize: '17px', padding: '16px' }}>
+                🦊 Conectar MetaMask
+              </button>
+              
+              {/* Feedback de error en caso de fallo de inyección del proveedor Web3 */}
+              {error && <p style={{ color: '#c62828', marginTop: '1.5rem', fontWeight: 500, fontSize: '14px' }}>{error}</p>}
+            </div>
+
+            {/* COLUMNAS INFORMATIVAS*/}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', width: '100%', borderTop: '1px solid #f5f5f7', paddingTop: '3rem' }}>
+              
+              <div style={{ textAlign: 'center', padding: '1rem' }}>
+                <div style={{ fontSize: '32px', marginBottom: '1rem' }}>🌍</div>
+                <h3 style={{ fontSize: '17px', margin: '0 0 10px 0', color: '#1d1d1f' }}>Accesibilidad</h3>
+                <p style={{ color: '#86868b', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
+                  Accede al mercado inmobiliario sin barreras gracias a la propiedad fraccionada.
+                </p>
+              </div>
+
+              <div style={{ textAlign: 'center', padding: '1rem' }}>
+                <div style={{ fontSize: '32px', marginBottom: '1rem' }}>🔐</div>
+                <h3 style={{ fontSize: '17px', margin: '0 0 10px 0', color: '#1d1d1f' }}>Seguridad</h3>
+                <p style={{ color: '#86868b', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
+                  Aprovecha las ventajas de la tecnología blockchain a la hora de realizar tus operaciones.
+                </p>
+              </div>
+
+              <div style={{ textAlign: 'center', padding: '1rem' }}>
+                <div style={{ fontSize: '32px', marginBottom: '1rem' }}>💸</div>
+                <h3 style={{ fontSize: '17px', margin: '0 0 10px 0', color: '#1d1d1f' }}>Liquidez</h3>
+                <p style={{ color: '#86868b', fontSize: '14px', margin: 0, lineHeight: '1.5' }}>
+                  Obtén liquidez inmediata operando en el mercado de inmuebles tokenizados.
+                </p>
+              </div>
+
+            </div>
+
           </div>
         ) : (
           /* Flujo autenticado: Renderizado del panel de control de la DApp */
